@@ -8,6 +8,7 @@ import { useEffect, useRef } from "react";
 import { useAuthState } from "@/app/authstatus";
 import { useNavState } from "@/app/navstate";
 import { useHandleRoute } from "@/app/library/(customHook)/useNavHook";
+import { usePathname } from "next/navigation";
 
 interface NavList {
     name: string
@@ -32,6 +33,7 @@ const Navbar: React.FC = () => {
     const navRef = useRef<any>(null)
     const indicatorRef = useRef<any>(null)
     const auth = useAuthState()
+    const pathName = usePathname()
     const toggleState = useNavState()
     const handleRoute = useHandleRoute()
 
@@ -70,7 +72,6 @@ const Navbar: React.FC = () => {
         }
     }
 
-
     return (
         <div className={`bg-black/90 h-20 relative z-20 left-0 right-0 top-0 text-inherit border-gray-100/20 md:px-10 px-5 flex justify-between items-center border-b `}>
             <div>
@@ -79,7 +80,7 @@ const Navbar: React.FC = () => {
                     <span className="inline align-middle text-5xl font-extrabold tracking-tighter navBrand">Home</span>
                 </Link>
             </div>
-            <div className="flex items-center">
+            <div className={`flex items-center ${pathName.includes('authentication') ? 'hidden' : 'block'}`}>
                 <ul className="md:flex gap-5 text-inherit bg-inherit hidden" ref={navRef}>
                     {navList.map((link, index) => (
                         <li key={index} className="py-5 cursor-pointer navList text-lg" onClick={() => handleRoute(link.path)}>

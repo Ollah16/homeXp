@@ -32,6 +32,8 @@ export const getFormData = async (formData: any) => {
             return { message: 'login successful' }
         }
 
+        return { error: 'inputs cant be empty' }
+
     } catch (err) {
         console.error(err)
     }

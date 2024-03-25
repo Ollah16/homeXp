@@ -55,6 +55,7 @@ export const HomeContent: React.FC = () => {
         handleToggleEffect()
     }, [toggleState?.isNavToggle])
 
+    console.log(introFill)
 
     return (
         <div className="relative overflow-x-hidden">
