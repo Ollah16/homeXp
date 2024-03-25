@@ -47,7 +47,7 @@ const AuthComponent: React.FC = () => {
 
                 <div className="sm:w-3/5 md:w-3/6 lg:w-1/3 w-4/5">
 
-                    <form action={handleAuth} className={`formText flex flex-col gap-4 rounded items-center border shadow 'border-black shadow-black/90 p-6`}>
+                    <form action={handleAuth} className={`formText flex flex-col gap-4 rounded items-center border shadow 'border-black shadow-gray-500/20 p-6`}>
 
                         <p className="text-sm">Access and Manage Your Apartment</p>
 
