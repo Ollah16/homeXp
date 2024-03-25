@@ -57,7 +57,7 @@ export const HomeContent: React.FC = () => {
 
 
     return (
-        <div className="relative">
+        <div className="relative overflow-x-hidden">
             <PageIntro introFill={introFill} />
 
             <GridPage />
