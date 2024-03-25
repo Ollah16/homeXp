@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { GridPage } from "../(submaincomponent)/submain"
 import { PageIntro } from "../(pageintro)/pageintro"
-import { SideBar } from "../(sidebar)/sidebar"
+// import { SideBar } from "../(sidebar)/sidebar"
 
 export const HomeContent: React.FC = () => {
 
@@ -44,7 +44,7 @@ export const HomeContent: React.FC = () => {
 
             <GridPage />
 
-            <SideBar />
+            {/* <SideBar /> */}
         </div>
     )
 }
