@@ -41,22 +41,23 @@ export const HomeContent: React.FC = () => {
             clearInterval(displayInt)
         }
 
-    }, [])
+    }, [introFill])
 
     useEffect(() => {
+        const handleToggleEffect = () => {
+            let getBody: any = document.querySelector('body')
+
+            if (isNavToggle) {
+                getBody.style.overflowY = 'hidden'
+            }
+            else {
+                getBody.style.overflowY = 'auto'
+            }
+        }
+
         handleToggleEffect()
     }, [isNavToggle])
 
-    const handleToggleEffect = () => {
-        let getBody: any = document.querySelector('body')
-
-        if (isNavToggle) {
-            getBody.style.overflowY = 'hidden'
-        }
-        else {
-            getBody.style.overflowY = 'auto'
-        }
-    }
 
     return (
         <div className="relative">
