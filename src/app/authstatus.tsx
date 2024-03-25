@@ -17,9 +17,7 @@ export const AuthProvider = ({
 
     const [isLogged, setIsLogged] = useState<boolean>(false)
 
-
     const handleAuth = (state: boolean) => {
-        console.log(state)
         setIsLogged(state)
     }
 

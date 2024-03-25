@@ -44,7 +44,7 @@ export const FooterComp = () => {
                     </ul>
 
                 </div>
-                <div className="before:content-[''] before:inline-block before:h-px before:bg-black/70 before:w-screen before:md:-ml-10 before:md:-mr-10 before:-ml-5 before:-mr-5">
+                <div className="before:content-[''] before:inline-block before:h-px before:bg-black/70 before:w-screen before:md:-ml-10 before:md:-mr-10 before:-ml-3 before:-mr-3">
                     <p className="text-xs font-bold text-black my-3">@{new Date().getFullYear()} HomeX</p>
                 </div>
             </div>

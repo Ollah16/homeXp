@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/(navbar)/navbar";
 import { AuthProvider } from "./authstatus";
 import { FooterComp } from "@/components/(Footer)/FooterComp";
+import { Chatbox } from "@/components/(chatbox)/chatbox";
+import { Navstate } from "./navstate";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -22,9 +24,12 @@ export default function RootLayout({
     <html lang="en">
       <body className="text-white overflow-x-hidden">
         <AuthProvider>
-          <Navbar />
-          {children}
-          <FooterComp />
+          <Navstate>
+            <Navbar />
+            {children}
+            <FooterComp />
+            <Chatbox />
+          </Navstate>
         </AuthProvider>
       </body>
     </html>

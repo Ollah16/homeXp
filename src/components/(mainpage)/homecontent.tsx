@@ -1,10 +1,9 @@
 'use client'
 
-import { useEffect, useState } from "react"
-import { Chatbox } from "../(chatbox)/chatbox"
+import { useEffect, useRef, useState } from "react"
 import { GridPage } from "../(submaincomponent)/submain"
 import { PageIntro } from "../(pageintro)/pageintro"
-import { Gridcom } from "../(gridcomp)/gridcom"
+import { SideBar } from "../(sidebar)/sidebar"
 
 export const HomeContent: React.FC = () => {
 
@@ -38,15 +37,14 @@ export const HomeContent: React.FC = () => {
 
     }, [])
 
+
     return (
         <div className="relative">
             <PageIntro introFill={introFill} />
 
             <GridPage />
 
-            <Chatbox />
-
-            <Gridcom />
+            <SideBar />
         </div>
     )
 }

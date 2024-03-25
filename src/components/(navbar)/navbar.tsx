@@ -1,30 +1,39 @@
 'use client'
 
 import Link from "next/link"
-import { FaMoon } from "react-icons/fa6";
+import { RxCross2 } from "react-icons/rx";
 import { BsHouseGearFill } from "react-icons/bs";
 import { CgMenuRightAlt } from "react-icons/cg";
 import { useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
 import { useAuthState } from "@/app/authstatus";
+import { useNavState } from "@/app/navstate";
+import { useHandleRoute } from "@/app/library/(customHook)/useNavHook";
 
+interface NavList {
+    name: string
+    path: string
+}
+
+const navList: NavList[] = [
+    { name: 'About', path: '/company' },
+    { name: 'Company', path: '/company' },
+    { name: 'Community', path: '/community' },
+    { name: 'Login', path: '/authentication' }
+]
+
+export const NavListArray = () => {
+    return navList
+}
 
 const Navbar: React.FC = () => {
 
-    interface NavList {
-        name: string
-        path: string
-    }
-    const navList: NavList[] = [
-        { name: 'About', path: '/company' },
-        { name: 'Company', path: '/company' },
-        { name: 'Community', path: '/community' },
-        { name: 'Login', path: '/authentication' }
-    ]
+
+    const navList = NavListArray()
     const navRef = useRef<any>(null)
     const indicatorRef = useRef<any>(null)
     const auth = useAuthState()
-    const router = useRouter()
+    const toggleState = useNavState()
+    const handleRoute = useHandleRoute()
 
     useEffect(() => {
 
@@ -40,8 +49,9 @@ const Navbar: React.FC = () => {
 
     }, []);
 
-    if (auth === undefined) return
+    if (auth === undefined || toggleState === undefined || handleRoute === undefined) return
     const { isLogged, handleAuth } = auth
+    const { isNavToggle, handleToggle } = toggleState
 
     const handleMouseEnter = (event: any) => {
 
@@ -63,15 +73,6 @@ const Navbar: React.FC = () => {
         }
     }
 
-    const handleRoute = (path: string) => {
-        if (path.includes('authentication') && isLogged) {
-            handleAuth(false)
-            router.push('/')
-            return
-        }
-        router.push(path)
-    }
-
 
     return (
         <div className={`bg-black/90 h-20 relative z-20 left-0 right-0 top-0 text-inherit border-gray-100/20 md:px-10 px-5 flex justify-between items-center border-b `}>
@@ -90,8 +91,10 @@ const Navbar: React.FC = () => {
                     ))}
                 </ul>
 
-                <div className="md:hidden inline-block">
-                    <CgMenuRightAlt className="text-4xl inline align-middle cursor-pointer" />
+                <div className="md:hidden inline-block relative">
+                    <CgMenuRightAlt className={`${isNavToggle ? 'text-transparent' : 'text-white'} absolute bottom-0 top-0 right-0 my-auto transition-colors duration-300 ease-in-out text-4xl inline align-middle cursor-pointer`} onClick={() => handleToggle(!isNavToggle)} />
+
+                    <RxCross2 className={`${isNavToggle ? 'text-white' : 'text-transparent'} absolute bottom-0 top-0 right-0 my-auto transition-colors duration-300 ease-in-out text-4xl inline align-middle cursor-pointer`} onClick={() => handleToggle(!isNavToggle)} />
                 </div>
                 <span ref={indicatorRef} className={`absolute bg-white bottom-0 transition-left transition-height ease-linear duration-200`}></span>
 

@@ -34,7 +34,7 @@ export const GridPage: React.FC = () => {
         <div className="bg-gray-400/10 md:px-10 px-5">
             <div className="flex justify-between gap-5 py-5 flex-col sm:grid sm:grid-cols-2 md:grid-cols-4 mt-[-100px]">
                 {xTeristics.map((information, index) => (
-                    <div key={index} className="overflow-hidden shadow-md shadow-gray-900/40 z-20 relative  w-full text-pretty h-[200px] inline-block p-3 border-[1px] drop-shadow-2xl rounded-lg border-black/50 bg-white">
+                    <div key={index} className="overflow-hidden shadow-md shadow-gray-950/20 z-20 relative  w-full text-pretty h-[200px] inline-block p-3 border-[1px] drop-shadow-2xl rounded-lg border-black/50 bg-white">
                         <div className="text-black/80 font-bold text-xl my-2">{information.name}</div>
                         <span className="inline-block text-black text-ellipsis">
                             suscipit fuga nisi dolorem odio vero reprehenderit et id. Accusantium cupiditate enim mollitia necessitatibus, aliquam velit.
