@@ -4,12 +4,18 @@ import { useEffect, useRef, useState } from "react"
 import { GridPage } from "../(submaincomponent)/submain"
 import { PageIntro } from "../(pageintro)/pageintro"
 import { SideBar } from "../(sidebar)/sidebar"
+import { useNavState } from "@/app/navstate"
 
 export const HomeContent: React.FC = () => {
+
+    const toggleState = useNavState()
 
     const [introFill, setIntroFill] = useState<string>('')
 
     const intro = "Welcome to the Seamless Property Concierge"
+
+    if (toggleState === undefined) return
+    const { isNavToggle, handleToggle } = toggleState
 
     useEffect(() => {
 
@@ -37,6 +43,20 @@ export const HomeContent: React.FC = () => {
 
     }, [])
 
+    useEffect(() => {
+        handleToggleEffect()
+    }, [isNavToggle])
+
+    const handleToggleEffect = () => {
+        let getBody: any = document.querySelector('body')
+
+        if (isNavToggle) {
+            getBody.style.overflowY = 'hidden'
+        }
+        else {
+            getBody.style.overflowY = 'auto'
+        }
+    }
 
     return (
         <div className="relative">

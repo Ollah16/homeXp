@@ -14,21 +14,6 @@ export const SideBar: React.FC = () => {
 
     const navList = NavListArray()
 
-    useEffect(() => {
-        handleToggleEffect()
-    }, [isNavToggle])
-
-    const handleToggleEffect = () => {
-
-        let getBody: any = document.querySelector('body')
-
-        if (isNavToggle) {
-            getBody.style.overflowY = 'hidden'
-        }
-        else {
-            getBody.style.overflowY = 'auto'
-        }
-    }
 
     return (
         <div className={`absolute h-[100vh] w-5/6 top-0 z-40 overflow-y-auto md:hidden block transition-right bg-white duration-500 ease-linear ${isNavToggle ? 'right-0' : 'right-[-500px]'}`}>
