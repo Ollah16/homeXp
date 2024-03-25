@@ -49,9 +49,6 @@ const Navbar: React.FC = () => {
 
     }, []);
 
-    if (auth === undefined || toggleState === undefined || handleRoute === undefined) return
-    const { isLogged, handleAuth } = auth
-    const { isNavToggle, handleToggle } = toggleState
 
     const handleMouseEnter = (event: any) => {
 
@@ -86,15 +83,15 @@ const Navbar: React.FC = () => {
                 <ul className="md:flex gap-5 text-inherit bg-inherit hidden" ref={navRef}>
                     {navList.map((link, index) => (
                         <li key={index} className="py-5 cursor-pointer navList text-lg" onClick={() => handleRoute(link.path)}>
-                            {link.name === 'Login' && isLogged ? 'Logout' : link.name}
+                            {link.name === 'Login' && auth?.isLogged ? 'Logout' : link.name}
                         </li>
                     ))}
                 </ul>
 
                 <div className="md:hidden inline-block relative">
-                    <CgMenuRightAlt className={`${isNavToggle ? 'text-transparent' : 'text-white'} absolute bottom-0 top-0 right-0 my-auto transition-colors duration-300 ease-in-out text-4xl inline align-middle cursor-pointer`} onClick={() => handleToggle(!isNavToggle)} />
+                    <CgMenuRightAlt className={`${toggleState?.isNavToggle ? 'text-transparent' : 'text-white'} absolute bottom-0 top-0 right-0 my-auto transition-colors duration-300 ease-in-out text-4xl inline align-middle cursor-pointer`} onClick={() => toggleState?.handleToggle(!toggleState?.isNavToggle)} />
 
-                    <RxCross2 className={`${isNavToggle ? 'text-white' : 'text-transparent'} absolute bottom-0 top-0 right-0 my-auto transition-colors duration-300 ease-in-out text-4xl inline align-middle cursor-pointer`} onClick={() => handleToggle(!isNavToggle)} />
+                    <RxCross2 className={`${toggleState?.isNavToggle ? 'text-white' : 'text-transparent'} absolute bottom-0 top-0 right-0 my-auto transition-colors duration-300 ease-in-out text-4xl inline align-middle cursor-pointer`} onClick={() => toggleState?.handleToggle(!toggleState?.isNavToggle)} />
                 </div>
                 <span ref={indicatorRef} className={`absolute bg-white bottom-0 transition-left transition-height ease-linear duration-200`}></span>
 

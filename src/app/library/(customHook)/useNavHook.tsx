@@ -8,13 +8,11 @@ export const useHandleRoute = () => {
     const router = useRouter()
 
     const auth = useAuthState()
-    if (auth === undefined) return
-    const { isLogged, handleAuth } = auth
 
     const handleRoute = (path: string): void => {
 
-        if (path.includes('authentication') && isLogged) {
-            handleAuth(false)
+        if (path.includes('authentication') && auth?.isLogged) {
+            auth?.handleAuth(false)
             router.push('/')
             return
         }

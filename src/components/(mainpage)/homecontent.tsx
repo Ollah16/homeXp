@@ -14,9 +14,6 @@ export const HomeContent: React.FC = () => {
 
     const intro = "Welcome to the Seamless Property Concierge"
 
-    if (toggleState === undefined) return
-    const { isNavToggle, handleToggle } = toggleState
-
     useEffect(() => {
 
         if (introFill.includes(intro)) return
@@ -47,7 +44,7 @@ export const HomeContent: React.FC = () => {
         const handleToggleEffect = () => {
             let getBody: any = document.querySelector('body')
 
-            if (isNavToggle) {
+            if (toggleState?.isNavToggle) {
                 getBody.style.overflowY = 'hidden'
             }
             else {
@@ -56,7 +53,7 @@ export const HomeContent: React.FC = () => {
         }
 
         handleToggleEffect()
-    }, [isNavToggle])
+    }, [toggleState?.isNavToggle])
 
 
     return (
