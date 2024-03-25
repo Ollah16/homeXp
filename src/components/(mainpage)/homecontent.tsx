@@ -38,7 +38,7 @@ export const HomeContent: React.FC = () => {
             clearInterval(displayInt)
         }
 
-    }, [introFill])
+    }, [])
 
     useEffect(() => {
         const handleToggleEffect = () => {
