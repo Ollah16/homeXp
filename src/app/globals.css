@@ -13,7 +13,10 @@
         font-family: "Vast Shadow", serif;
         font-style: normal;
         text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+    }
 
+    .text-shadow {
+        text-shadow: #FC0 1px 0 10px;
     }
 
 

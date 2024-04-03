@@ -26,17 +26,18 @@ export const Chatbox = () => {
 
                     </div>
                     <div className="relative px-2 bg-inherit">
-                        <textarea className="focus:outline-1 focus:outline-gray-500 w-full inline-block caret-gray-500 p-2 border border-gray-500 rounded-md" placeholder="Ask a question?" >
+                        <textarea className="focus:outline-1 text-black focus:outline-gray-500 w-full inline-block caret-gray-500 p-2 border border-gray-500 rounded-md" placeholder="Ask a question?" >
                         </textarea>
-                        <IoSend className="absolute right-5 top-0 bottom-0 text-2xl text-black m-auto cursor-pointer hover:text-black/70 transition-colors ease-in-out duration-300" />
+                        <IoSend className="absolute right-5 top-0 bottom-0 text-2xl text-black m-auto cursor-pointer hover:scale-110 transition-transform ease-in-out duration-300" />
                     </div>
                 </div>
             </div >
 
-            <BsFillChatQuoteFill onClick={() => handleChatBox(!isChat)}
-                className={`
-               text-5xl md:text-7xl text-black hover:text-black/80 transition-colors duration-500 ease-in-out cursor-pointer fixed bottom-20 right-7 z-20`} />
-
+            <div className="fixed bottom-20 right-7 z-20">
+                <button data-testid='clickOn' onClick={() => handleChatBox(!isChat)} className="border-0 bg-transparent hover:scale-110 transition-transform duration-200 ease-in-out">
+                    <BsFillChatQuoteFill className={`text-3xl md:text-5xl text-black`} />
+                </button>
+            </div>
         </div>
     )
 }

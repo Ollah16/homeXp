@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/(navbar)/navbar";
 import { AuthProvider } from "./authstatus";
 import { FooterComp } from "@/components/(Footer)/FooterComp";
 import { Chatbox } from "@/components/(chatbox)/chatbox";
-import { Navstate } from "./navstate";
+import { NavToggle } from "@/app/navstate"
+import { Navbar } from "@/components/(navbar)/navbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -24,12 +24,12 @@ export default function RootLayout({
     <html lang="en">
       <body className="text-white overflow-x-hidden">
         <AuthProvider>
-          <Navstate>
+          <NavToggle>
             <Navbar />
             {children}
             <FooterComp />
             <Chatbox />
-          </Navstate>
+          </NavToggle>
         </AuthProvider>
       </body>
     </html>

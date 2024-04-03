@@ -34,7 +34,9 @@
     ".next/types/**/*.ts",
     "src/app/action.tsx",
     "src/app/authentication/page.tsx",
-    "src/components/(response)/authresponse.jsx"
+    "src/components/(response)/authresponse.jsx",
+    "jest.config.js",
+    "src/__mocks__/mongoose.js"
   ],
   "exclude": [
     "node_modules"

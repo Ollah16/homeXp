@@ -4,16 +4,17 @@ import Link from "next/link"
 import { RxCross2 } from "react-icons/rx";
 import { BsHouseGearFill } from "react-icons/bs";
 import { CgMenuRightAlt } from "react-icons/cg";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAuthState } from "@/app/authstatus";
-import { useNavState } from "@/app/navstate";
-import { useHandleRoute } from "@/app/library/(customHook)/useNavHook";
+import { useHandleRoute } from "@/app/library/(customHook)/useRouteHook";
 import { usePathname } from "next/navigation";
+import { useNavState } from "@/app/navstate";
 
 interface NavList {
     name: string
     path: string
 }
+
 
 const navList: NavList[] = [
     { name: 'About', path: '/company' },
@@ -26,8 +27,7 @@ export const NavListArray = () => {
     return navList
 }
 
-const Navbar: React.FC = () => {
-
+export const Navbar: React.FC = () => {
 
     const navList = NavListArray()
     const navRef = useRef<any>(null)
@@ -36,6 +36,9 @@ const Navbar: React.FC = () => {
     const pathName = usePathname()
     const toggleState = useNavState()
     const handleRoute = useHandleRoute()
+    const [isAuthPath, handlePathId] = useState(
+        pathName === '/authentication' ? true : false
+    )
 
     useEffect(() => {
 
@@ -75,12 +78,12 @@ const Navbar: React.FC = () => {
     return (
         <div className={`bg-black/90 h-20 relative z-20 left-0 right-0 top-0 text-inherit border-gray-100/20 md:px-10 px-5 flex justify-between items-center border-b `}>
             <div>
-                <Link href={'/'} className="text-inherit items-center flex py-3">
-                    <span><BsHouseGearFill className="inline align-middle text-5xl" /></span>
-                    <span className="inline align-middle text-5xl font-extrabold tracking-tighter navBrand">Home</span>
+                <Link href={'/'} className="text-inherit flex items-center py-3 text-5xl relative font-extrabold">
+                    <BsHouseGearFill className="my-auto inline" />
+                    <span className="mb-[-8px] inline-block align-middle tracking-tighter navBrand leading-none">HOME</span>
                 </Link>
             </div>
-            <div className={`flex items-center ${pathName.includes('authentication') ? 'hidden' : 'block'}`}>
+            <div className={`flex items-center ${isAuthPath ? 'hidden' : 'block'}`}>
                 <ul className="md:flex gap-5 text-inherit bg-inherit hidden" ref={navRef}>
                     {navList.map((link, index) => (
                         <li key={index} className="py-5 cursor-pointer navList text-lg" onClick={() => handleRoute(link.path)}>
@@ -89,10 +92,13 @@ const Navbar: React.FC = () => {
                     ))}
                 </ul>
 
-                <div className="md:hidden inline-block relative">
-                    <CgMenuRightAlt className={`${toggleState?.isNavToggle ? 'text-transparent' : 'text-white'} absolute bottom-0 top-0 right-0 my-auto transition-colors duration-300 ease-in-out text-4xl inline align-middle cursor-pointer`} onClick={() => toggleState?.handleToggle(!toggleState?.isNavToggle)} />
+                <div className="md:hidden flex items-center w-auto h-auto relative ">
 
-                    <RxCross2 className={`${toggleState?.isNavToggle ? 'text-white' : 'text-transparent'} absolute bottom-0 top-0 right-0 my-auto transition-colors duration-300 ease-in-out text-4xl inline align-middle cursor-pointer`} onClick={() => toggleState?.handleToggle(!toggleState?.isNavToggle)} />
+                    <button onClick={() => toggleState?.handleToggle(!toggleState?.isNavToggle)} className="border-0 bg-transparent px-2 relative my-auto w-9 h-10 hover:bg-transparent/90 transition-colors duration-300 ease-in-out rounded-md flex items-center">
+                        <CgMenuRightAlt className={`${toggleState?.isNavToggle ? 'text-transparent' : 'text-white'} absolute top-0 right-0 bottom-0 left-0 my-auto transition-colors duration-300 ease-in-out text-4xl inline-block`} />
+                        <RxCross2 className={`${toggleState?.isNavToggle ? 'text-white' : 'text-transparent'} absolute top-0 right-0 bottom-0 left-0 my-auto transition-colors duration-300 ease-in-out text-4xl inline-block`} />
+                    </button>
+
                 </div>
                 <span ref={indicatorRef} className={`absolute bg-white bottom-0 transition-left transition-height ease-linear duration-200`}></span>
 
@@ -102,4 +108,3 @@ const Navbar: React.FC = () => {
     )
 }
 
-export default Navbar

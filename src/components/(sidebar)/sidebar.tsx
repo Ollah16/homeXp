@@ -1,22 +1,19 @@
-import { useNavState } from "@/app/navstate"
 import React, { useEffect } from "react"
 import { NavListArray } from "../(navbar)/navbar"
 import { useAuthState } from "@/app/authstatus"
-import { useHandleRoute } from "@/app/library/(customHook)/useNavHook"
+import { useHandleRoute } from "@/app/library/(customHook)/useRouteHook"
+import { useNavState } from "@/app/navstate"
 
 export const SideBar: React.FC = () => {
     const toggleState = useNavState()
     const auth = useAuthState()
     const handleRoute = useHandleRoute()
-    if (toggleState === undefined || auth === undefined || handleRoute === undefined) return
-    const { isNavToggle, handleToggle } = toggleState
-    const { isLogged, handleAuth } = auth
 
     const navList = NavListArray()
 
 
     return (
-        <div className={`absolute h-[100vh] w-5/6 top-0 z-40 overflow-y-auto md:hidden block transition-right bg-white duration-500 ease-in-out ${isNavToggle ? 'right-0' : 'right-[-1000px]'}`}>
+        <div className={`absolute h-[100vh] w-5/6 top-0 z-40 overflow-y-auto md:hidden block transition-right bg-white duration-500 ease-in-out ${toggleState?.isNavToggle ? 'right-0' : 'right-[-1000px]'}`}>
             <ul className="flex flex-col text-black justify-between">
                 {navList.map((nav, index) => (
                     <li key={index} className={`px-4 py-2 after:absolute after:content-[''] after:inline-block after:w-full after:h-px after:bg-gray-500/30 after:bottom-0 after:left-0 after:right-0 relative
@@ -25,7 +22,7 @@ export const SideBar: React.FC = () => {
                         <div onClick={() => handleRoute(nav.path)}
                             className={`text-xl font-semibold cursor-pointer`}
                         >
-                            {nav.name === 'Login' && isLogged ? 'Logout' : nav.name}
+                            {nav.name === 'Login' && auth?.isLogged ? 'Logout' : nav.name}
                         </div>
                     </li>
                 ))}

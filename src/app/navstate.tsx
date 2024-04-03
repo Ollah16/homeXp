@@ -1,15 +1,15 @@
 'use client'
 
 import { createContext, useContext, useState } from "react"
-interface NavFace {
-    isNavToggle: boolean
+
+interface NavType {
+    isNavToggle: boolean;
     handleToggle: (state: boolean) => void
 }
 
+const NavState = createContext<NavType | undefined>(undefined)
 
-const NavState = createContext<NavFace | undefined>(undefined)
-
-export const Navstate = ({
+export const NavToggle = ({
     children,
 }: Readonly<{
     children: React.ReactNode;
@@ -18,16 +18,12 @@ export const Navstate = ({
     const [isNavToggle, setToggle] = useState<boolean>(false)
 
     const handleToggle = (state: boolean) => {
-        setToggle(state)
+        setToggle(prev => prev = state)
     }
 
-    return (
-        <NavState.Provider value={{ isNavToggle, handleToggle }}>
-            {children}
-        </NavState.Provider>
-    )
+    return (<NavState.Provider value={{ isNavToggle, handleToggle }}>
+        {children}
+    </NavState.Provider>)
 }
 
-export const useNavState = () => {
-    return useContext(NavState)
-}
+export const useNavState = () => useContext(NavState)

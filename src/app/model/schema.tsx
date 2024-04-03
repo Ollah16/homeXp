@@ -1,6 +1,5 @@
-import mongoose, { Schema, Model } from "mongoose";
+import mongoose, { InferSchemaType, Model, Schema, model } from "mongoose";
 
-const { model } = mongoose;
 
 const userSchema = new Schema({
     unit: {
@@ -20,17 +19,14 @@ const userSchema = new Schema({
     }
 }, { timestamps: true });
 
-interface IUser {
-    unit: number;
-    email: string;
-    password: string;
-}
+type userSchema = InferSchemaType<typeof userSchema>;
 
-export const getUserModel = (): Model<IUser> => {
+
+export const getUserModel = (): Model<userSchema> => {
     try {
-        return model<IUser>('User', userSchema);
+        return mongoose.model<userSchema>("User", userSchema);
     } catch (error) {
-        return mongoose.models.User;
+        return mongoose.models?.User;
     }
 };
 

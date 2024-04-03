@@ -9,10 +9,11 @@ interface Message {
 
 const User = getUserModel();
 
-export const getFormData = async (formData: any) => {
+export const getFormData = async (formInput: any) => {
     connectToDb()
 
-    const { unit, password, email } = Object.fromEntries(formData)
+    const { unit, password, email } = formInput
+
     try {
         if (unit && email && password) {
             const userVer = await User.findOne({ email })
@@ -32,7 +33,6 @@ export const getFormData = async (formData: any) => {
             return { message: 'login successful' }
         }
 
-        return { error: 'inputs cant be empty' }
 
     } catch (err) {
         console.error(err)

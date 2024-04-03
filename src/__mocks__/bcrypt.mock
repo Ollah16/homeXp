@@ -1,0 +1,2 @@
+export const genSalt = jest.fn();
+export const compare = jest.fn();
