@@ -1,11 +1,11 @@
 'use client'
 
-import { useEffect, useRef, useState } from "react"
-import { PageIntro } from "../(pageintro)/pageintro"
+import { useEffect } from "react"
 import { SideBar } from "../(sidebar)/sidebar"
 import { useNavState } from "@/app/navstate"
 import { Gridcom } from "../(gridcomp)/gridcom"
 import { SubMainHome } from "../(submaincomponent)/submain"
+import { PageIntro } from "../(pageintro)/pageintro"
 
 export const HomeContent: React.FC = () => {
 
