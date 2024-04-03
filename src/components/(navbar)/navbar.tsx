@@ -36,9 +36,12 @@ export const Navbar: React.FC = () => {
     const pathName = usePathname()
     const toggleState = useNavState()
     const handleRoute = useHandleRoute()
-    const [isAuthPath, handlePathId] = useState(
-        pathName === '/authentication' ? true : false
-    )
+    const [isAuthPath, handlePathId] = useState<boolean>()
+
+    useEffect(() => {
+        let path = pathName === '/authentication' ? true : false
+        handlePathId(path)
+    }, [])
 
     useEffect(() => {
 
