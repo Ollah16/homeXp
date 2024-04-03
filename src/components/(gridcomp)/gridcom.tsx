@@ -1,16 +1,18 @@
 'use client'
 import Image from 'next/image'
+import messaging from '@/assets/messaging.jpg'
+import maintenance from '@/assets/maintenance.jpg'
 
 export const Gridcom = () => {
 
     const gridComponent = [
         {
             name: 'Efficiently Coordinate with Reception and Maintenance Teams for Seamless Operations.',
-            image: '/assets/messaging.jpg'
+            image: messaging
         },
         {
             name: 'Maintenance team is readily available during business hours to ensure prompt and efficient repairs and maintenance services.',
-            image: '/assets/maintenance.jpg'
+            image: maintenance
         },
 
     ]
@@ -23,7 +25,7 @@ export const Gridcom = () => {
                         <span className='inline-block my-auto'> {grid.name}</span>
                     </div>
                     <div className='lg:w-1/2 w-full relative h-full'>
-                        <Image src={grid.image} className="absolute h-full rotate-y top-0 bottom-0 left-0 right-0 object-cover" alt='' />
+                        <Image src={grid.image} fill className="absolute h-full rotate-y top-0 bottom-0 left-0 right-0 object-cover" alt='' />
                     </div>
                 </div>
             ))
