@@ -1,18 +1,16 @@
 'use client'
-import messaging from '@/assets/messaging.jpg'
 import Image from 'next/image'
-import maintenance from '@/assets/maintenance.jpg'
 
 export const Gridcom = () => {
 
     const gridComponent = [
         {
             name: 'Efficiently Coordinate with Reception and Maintenance Teams for Seamless Operations.',
-            image: messaging
+            image: '/assets/messaging.jpg'
         },
         {
             name: 'Maintenance team is readily available during business hours to ensure prompt and efficient repairs and maintenance services.',
-            image: maintenance
+            image: '/assets/maintenance.jpg'
         },
 
     ]
