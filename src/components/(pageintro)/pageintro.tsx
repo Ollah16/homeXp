@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import homerepair from '@/assets/homerepair.jpg'
+import homerepair from './assets/homerepair.jpg'
 interface PageProp {
     [key: string]: string
 }
