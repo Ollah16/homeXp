@@ -41,7 +41,7 @@ export const Navbar: React.FC = () => {
     useEffect(() => {
         let path = pathName === '/authentication' ? true : false
         handlePathId(path)
-    }, [])
+    }, [pathName])
 
     useEffect(() => {
 
