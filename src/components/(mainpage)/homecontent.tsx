@@ -6,6 +6,7 @@ import { useNavState } from "@/app/navstate"
 import { Gridcom } from "../(gridcomp)/gridcom"
 import { SubMainHome } from "../(submaincomponent)/submain"
 import { PageIntro } from "../(pageintro)/pageintro"
+import { Navbar } from "../(navbar)/navbar"
 
 export const HomeContent: React.FC = () => {
 
@@ -28,13 +29,17 @@ export const HomeContent: React.FC = () => {
 
     return (
         <div className="relative overflow-x-hidden">
-            <PageIntro />
+            <Navbar path={''} />
 
-            <SubMainHome />
+            <section className="relative">
+                <PageIntro />
 
-            <Gridcom />
+                <SubMainHome />
 
-            <SideBar />
+                <Gridcom />
+
+                <SideBar />
+            </section>
         </div>
     )
 }

@@ -5,7 +5,6 @@ import { AuthProvider } from "./authstatus";
 import { FooterComp } from "@/components/(Footer)/FooterComp";
 import { Chatbox } from "@/components/(chatbox)/chatbox";
 import { NavToggle } from "@/app/navstate"
-import { Navbar } from "@/components/(navbar)/navbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -25,7 +24,6 @@ export default function RootLayout({
       <body className="text-white overflow-x-hidden">
         <AuthProvider>
           <NavToggle>
-            <Navbar />
             {children}
             <FooterComp />
             <Chatbox />

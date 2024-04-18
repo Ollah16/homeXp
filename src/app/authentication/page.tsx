@@ -1,9 +1,11 @@
 'use client'
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAuthState } from "../authstatus";
 import { getFormData } from '../actions/authaction';
 import { useHandleRoute } from "../library/(customHook)/useRouteHook";
+import { Navbar } from "@/components/(navbar)/navbar";
+import { usePathname } from "next/navigation";
 
 
 const AuthComponent: React.FC = () => {
@@ -18,6 +20,8 @@ const AuthComponent: React.FC = () => {
     const unitRef = useRef<any>(null)
     const passRef = useRef<any>(null)
     const auth = useAuthState()
+    const [pathName, setPathName] = useState(usePathname())
+
 
     const handleAuth = async (e: any) => {
 
@@ -55,8 +59,15 @@ const AuthComponent: React.FC = () => {
         setResPonse(res?.message || res?.error)
     }
 
+    const handleNonR = () => {
+
+
+    }
+
     return (
         <div>
+            <Navbar path={pathName} />
+
             <div className="flex justify-center text-black my-20">
 
                 <div className="sm:w-3/5 md:w-3/6 lg:w-1/3 w-4/5 flex flex-col gap-3 rounded items-center border shadow 'border-black shadow-gray-500/20 p-6 overflow-hidden">

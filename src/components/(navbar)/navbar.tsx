@@ -27,21 +27,18 @@ export const NavListArray = () => {
     return navList
 }
 
-export const Navbar: React.FC = () => {
+interface NavbarProps {
+    path: string;
+}
+
+export const Navbar: React.FC<NavbarProps> = ({ path }) => {
 
     const navList = NavListArray()
     const navRef = useRef<any>(null)
     const indicatorRef = useRef<any>(null)
     const auth = useAuthState()
-    const pathName = usePathname()
     const toggleState = useNavState()
     const handleRoute = useHandleRoute()
-    const [isAuthPath, handlePathId] = useState<boolean>()
-
-    useEffect(() => {
-        let path = pathName === '/authentication' ? true : false
-        handlePathId(path)
-    }, [pathName])
 
     useEffect(() => {
 
@@ -79,14 +76,14 @@ export const Navbar: React.FC = () => {
     }
 
     return (
-        <div className={`bg-black/90 h-20 relative z-20 left-0 right-0 top-0 text-inherit border-gray-100/20 md:px-10 px-5 flex justify-between items-center border-b `}>
+        <div className={`bg-black/90 h-20 relative z-20 left-0 right-0 top-0 text-inherit border-gray-100/20 md:px-10 px-5 flex justify-between items-center border-b`}>
             <div>
                 <Link href={'/'} className="text-inherit flex items-center py-3 text-5xl relative font-extrabold">
                     <BsHouseGearFill className="my-auto inline" />
                     <span className="mb-[-8px] inline-block align-middle tracking-tighter navBrand leading-none">HOME</span>
                 </Link>
             </div>
-            <div className={`flex items-center ${isAuthPath ? 'hidden' : 'block'}`}>
+            <div className={`flex items-center ${path ? 'hidden' : 'block'}`}>
                 <ul className="md:flex gap-5 text-inherit bg-inherit hidden" ref={navRef}>
                     {navList.map((link, index) => (
                         <li key={index} className="py-5 cursor-pointer navList text-lg" onClick={() => handleRoute(link.path)}>
